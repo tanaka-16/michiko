@@ -1,0 +1,108 @@
+/* Tổng quan */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    text-align: center;
+}
+
+header a {
+    text-decoration: none;
+    color: #333;
+}
+
+header a:hover {
+    color: #007bff;
+}
+
+.home-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+.home-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Bố cục chính */
+.container {
+    display: flex;
+    margin-top: 60px;
+    height: calc(100vh - 120px);
+}
+
+.singers {
+    width: 25%;
+    padding: 10px;
+    border-right: 1px solid black;
+    overflow-y: auto;
+}
+
+.singers li {
+    list-style-type: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.singers li:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+}
+
+main {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-right: 1px solid black;
+}
+
+iframe {
+    width: 100%;
+    height: 315px;
+}
+
+.lyrics {
+    width: 25%;
+    padding: 10px;
+    overflow-y: auto;
+    border-left: 1px solid black;
+}
+
+/* Footer */
+footer {
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid black;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.ad-banner {
+    color: #555;
+    font-size: 14px;
+}
