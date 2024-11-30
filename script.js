@@ -79,13 +79,10 @@ const songsData = {
             "title": "はいよろこんで",
             "video": "https://www.youtube.com/embed/https://youtu.be/jzi6RNVEOtA",
             "lyrics": "歌詞 はいよろこんで の内容..."
-        },
+        }
     ]
 };
-
 renderSingers(songsData);
-    })
-    .catch((error) => console.error("Error loading songs.json:", error));
 
 // Hàm render danh sách ca sĩ
 function renderSingers(data) {
