@@ -1,4 +1,4 @@
-// Tải dữ liệu từ file JSON
+// Cấu trúc dữ liệu ca sĩ và các bài hát của họ
 const songsData = {
     "Mrs. GREEN APPLE": [
         {
@@ -7,122 +7,83 @@ const songsData = {
             "lyrics": "歌詞 ビターバカンス の内容..."
         },
         {
-            "title": "familie",
-            "video": "https://www.youtube.com/embed/https://youtu.be/FYhxYcXfhYA",
-            "lyrics": "歌詞 familie の内容..."
-        },
-        {
-            "title": "ライラック",
-            "video": "https://www.youtube.com/embed/https://youtu.be/QjrkrVmC-8M",
-            "lyrics": "歌詞 ライラック の内容..."
-        },
-        {
-            "title": "点描の唄",
-            "video": "https://www.youtube.com/embed/https://youtu.be/9UQQwRcHHQY",
-            "lyrics": "歌詞 点描の唄 の内容..."
-        },
-        {
-            "title": "Dear",
-            "video": "https://www.youtube.com/embed/https://youtu.be/cNP21cprtbk",
-            "lyrics": "歌詞 Dear の内容..."
-        },
-        {
-            "title": "コロンブス",
-            "video": "https://www.youtube.com/embed/https://youtu.be/z6x_Xk0WFko",
-            "lyrics": "歌詞 コロンブス の内容..."
-        },
-        {
-            "title": "ナハトムジーク",
-            "video": "https://www.youtube.com/embed/https://youtu.be/Dsylo684yWA",
-            "lyrics": "歌詞 ナハトムジーク の内容..."
-        },
-        {
-            "title": "Magic",
-            "video": "https://www.youtube.com/embed/https://youtu.be/CN-Ja6jCweA",
-            "lyrics": "歌詞 Magic の内容..."
-        },
-        {
-            "title": "ケセラセラ",
-            "video": "https://www.youtube.com/embed/https://youtu.be/Jy-QS27q7lA",
-            "lyrics": "歌詞 ケセラセラ の内容..."
-        },
-        {
-            "title": "Soranji",
-            "video": "https://www.youtube.com/embed/https://youtu.be/44cICMd3jW4",
-            "lyrics": "歌詞 Soranji の内容..."
-        },
-
-
-        {
-            "title": "ダンスホール",
-            "video": "https://www.youtube.com/embed/https://youtu.be/x2rvSf0STBM",
-            "lyrics": "歌詞 ダンスホール の内容..."
-        },
-        {
             "title": "青と夏",
-            "video": "https://www.youtube.com/embed/https://youtu.be/m34DPnRUfMU",
+            "video": "https://www.youtube.com/embed/YHbQzON91ug",
             "lyrics": "歌詞 青と夏 の内容..."
-        },
-        {
-            "title": "ロマンチシズム",
-            "video": "https://www.youtube.com/embed/https://youtu.be/RiDCIqF0-6Y",
-            "lyrics": "歌詞 ロマンチシズム の内容..."
-        },
-        {
-            "title": "僕のこと",
-            "video": "https://www.youtube.com/embed/https://youtu.be/xefpHEg5UIA",
-            "lyrics": "歌詞 僕のこと の内容..."
-        },
+        }
     ],
-    "こっちのけんと": [
+    "RADWIMPS": [
         {
-            "title": "はいよろこんで",
-            "video": "https://www.youtube.com/embed/https://youtu.be/jzi6RNVEOtA",
-            "lyrics": "歌詞 はいよろこんで の内容..."
+            "title": "前前前世",
+            "video": "https://www.youtube.com/embed/8wT-4NBqFhI",
+            "lyrics": "歌詞 前前前世 の内容..."
+        },
+        {
+            "title": "なんでもないや",
+            "video": "https://www.youtube.com/embed/ogWv21rzAZk",
+            "lyrics": "歌詞 なんでもないや の内容..."
         }
     ]
 };
-renderSingers(songsData);
 
-// Hàm render danh sách ca sĩ
-function renderSingers(data) {
-    const singersContainer = document.querySelector(".singers");
-    Object.keys(data).forEach((singer) => {
-        const singerItem = document.createElement("li");
-        singerItem.textContent = singer;
-        singerItem.addEventListener("click", () => toggleSongs(data, singer, singerItem));
-        singersContainer.appendChild(singerItem);
+// Hàm hiển thị danh sách bài hát cho mỗi ca sĩ
+function renderSongs(artist) {
+    const songList = document.getElementById("song-list");
+    songList.innerHTML = ''; // Xóa danh sách cũ trước khi hiển thị lại
+
+    const songs = songsData[artist];
+    songs.forEach((song) => {
+        const songItem = document.createElement("li");
+        songItem.textContent = song.title;
+        songItem.classList.add("song");
+        songItem.onclick = () => playSong(song); // Khi click vào bài hát, gọi hàm playSong
+        songList.appendChild(songItem);
     });
 }
 
-// Hiển thị hoặc ẩn danh sách bài hát
-function toggleSongs(data, singer, singerItem) {
-    const existingSongs = singerItem.nextElementSibling;
-    if (existingSongs && existingSongs.classList.contains("song-list")) {
-        existingSongs.remove();
-    } else {
-        const songList = document.createElement("ul");
-        songList.classList.add("song-list");
-        data[singer].forEach((song) => {
-            const songItem = document.createElement("li");
-            songItem.textContent = song.title;
-            songItem.addEventListener("click", () => renderSong(song));
-            songList.appendChild(songItem);
-        });
-        singerItem.insertAdjacentElement("afterend", songList);
-    }
-}
+// Hàm phát bài hát (thay đổi video và lời bài hát)
+function playSong(song) {
+    const videoElement = document.getElementById("video");
+    videoElement.src = song.video + "?autoplay=1&loop=1&playlist=" + getVideoID(song.video); // Thêm autoplay và loop
 
-// Render video và lời bài hát
-function renderSong(song) {
-    document.getElementById("video").src = `${song.video}?autoplay=1&loop=1&playlist=${getVideoID(song.video)}`;
     const lyricsContainer = document.querySelector(".lyrics");
-    lyricsContainer.textContent = song.lyrics;
+    lyricsContainer.textContent = song.lyrics; // Hiển thị lời bài hát
 }
 
-// Trích xuất video ID để lặp lại video
+// Hàm để lấy video ID từ URL YouTube
 function getVideoID(url) {
     const regex = /embed\/([a-zA-Z0-9_-]+)/;
     const match = url.match(regex);
     return match ? match[1] : "";
 }
+
+// Hàm để toggle (ẩn/hiện) danh sách ca khúc của ca sĩ
+function toggleSongList(artist) {
+    const songList = document.getElementById("song-list");
+    if (songList.style.display === "none" || songList.style.display === "") {
+        songList.style.display = "block"; // Hiển thị danh sách bài hát
+        renderSongs(artist); // Hiển thị các bài hát của ca sĩ
+    } else {
+        songList.style.display = "none"; // Ẩn danh sách bài hát
+    }
+}
+
+// Hàm để render danh sách ca sĩ
+function renderArtists() {
+    const artistList = document.getElementById("artist-list");
+    for (const artist in songsData) {
+        const artistItem = document.createElement("li");
+        artistItem.textContent = artist;
+        artistItem.classList.add("artist");
+        artistItem.onclick = () => toggleSongList(artist); // Khi click vào tên ca sĩ, toggle danh sách bài hát
+        artistList.appendChild(artistItem);
+    }
+}
+
+// Hàm khởi tạo trang
+function init() {
+    renderArtists(); // Hiển thị danh sách ca sĩ khi trang được tải
+}
+
+// Chạy hàm init khi trang được tải
+window.onload = init;
