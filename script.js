@@ -36,6 +36,7 @@ function createSingerList() {
 
 // Hàm để hiển thị danh sách bài hát của ca sĩ và thay đổi video và lời bài hát
 function toggleSongList(artist, artistItem) {
+    // Kiểm tra xem danh sách bài hát đã tồn tại chưa
     let songList = artistItem.nextElementSibling;
     
     // Nếu danh sách bài hát chưa tồn tại, tạo nó
@@ -66,12 +67,18 @@ function changeSong(song) {
     const videoFrame = document.getElementById('video');
     const lyricsDiv = document.querySelector('.lyrics-content');
     
-    // Thay đổi video
-    videoFrame.src = song.video + '?autoplay=1'; // Thêm autoplay để video tự động phát
+    // Kiểm tra nếu videoFrame không phải là null
+    if (videoFrame) {
+        videoFrame.src = song.video + '?autoplay=1'; // Thêm autoplay để video tự động phát
+    }
     
-    // Thay đổi lời bài hát
-    lyricsDiv.textContent = song.lyrics;
+    // Kiểm tra nếu lyricsDiv không phải là null
+    if (lyricsDiv) {
+        lyricsDiv.textContent = song.lyrics;
+    }
 }
 
 // Gọi hàm để tạo danh sách ca sĩ khi trang web được tải
-createSingerList();
+document.addEventListener('DOMContentLoaded', () => {
+    createSingerList();
+});
