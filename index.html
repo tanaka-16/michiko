@@ -8,24 +8,35 @@
 </head>
 <body>
     <header>
+        <!-- Nút Home và tiêu đề với liên kết đến kênh YouTube -->
         <button class="home-btn" onclick="window.location.href='index.html'">Home</button>
         <h1><a href="https://www.youtube.com/@MichikoLyrics" target="_blank">Michiko Lyrics</a></h1>
     </header>
+    
     <div class="container">
+        <!-- Phần bên trái để hiển thị danh sách ca sĩ và bài hát -->
         <aside class="singers">
-            <!-- Danh sách ca sĩ và bài hát sẽ được render ở đây -->
+            <ul id="artist-list"></ul>
+            <!-- Danh sách ca sĩ sẽ được hiển thị ở đây -->
         </aside>
+        
         <main>
-            <iframe id="video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <!-- Phần chính để hiển thị video YouTube -->
+            <iframe id="video" width="560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </main>
+        
         <aside class="lyrics">
-            <!-- Lời bài hát sẽ được render ở đây -->
+            <!-- Phần để hiển thị lời bài hát -->
+            <div class="lyrics-content"></div>
         </aside>
     </div>
+    
     <footer>
-        <!-- Thêm quảng cáo Google Adsense nếu cần -->
+        <!-- Quảng cáo Google Adsense -->
         <div class="ad-banner">Quảng cáo</div>
     </footer>
+
+    <!-- Link đến file script.js -->
     <script src="script.js"></script>
 </body>
 </html>
