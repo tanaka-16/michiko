@@ -38,10 +38,11 @@ function createSingerList() {
 function toggleSongList(artist, artistItem) {
     // Kiểm tra xem danh sách bài hát đã tồn tại chưa
     let songList = artistItem.nextElementSibling;
-    
+
     // Nếu danh sách bài hát chưa tồn tại, tạo nó
-    if (!songList) {
+    if (!songList || songList.nodeName !== 'UL') {
         songList = document.createElement('ul');
+        songList.style.display = 'none';  // Đảm bảo nó được ẩn khi bắt đầu
         songsData[artist].forEach((song) => {
             const songItem = document.createElement('li');
             songItem.textContent = song.title;
